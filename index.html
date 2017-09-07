@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="author" content="Bruno Coimbra - https://github.com/c0imbra" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Inconsolata|Roboto+Mono" rel="stylesheet">
+    <title>~</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-user-drag: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            -webkit-user-select: none;
+                    user-select: none;
+        }
+
+        ul { list-style: none }
+
+        body, html { background: #0e0e0e }
+
+        :root {
+            --accent: #ffa6e8;
+        }
+
+        ::selection { background: #000 }
+
+        [class^='\5f'] {
+            position: absolute;
+        }
+
+        .\5f nav {
+            height: 320px;
+            width: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: grey;
+            box-shadow: 0 5px 30px rgba(0,0,0,.4);
+            border-bottom: 5px solid var(--accent);
+        }
+
+        .\5f nav section {
+            width: 50%;
+            height: 100%;
+            transition: all .5s ease-in-out;
+            filter: grayscale(1) /*brightness(120%) contrast(120%)*/;
+        }
+
+        .\5f nav section:nth-child(1) { background: url("img/section-1.gif") center left / cover }
+        .\5f nav section:nth-child(2) { background: url("img/section-2.gif") center left / cover}
+        .\5f nav section:nth-child(3) { background: url("img/section-3.gif") center right / cover}
+        .\5f nav section:nth-child(4) { background: url("img/section-4.gif") center right / cover}
+
+        .\5f nav section:hover {
+            width: 120%;
+            filter: grayscale(0);
+        }
+
+        .\5f nav section ul {
+            max-width: 40%;
+            background: #fff;
+            margin: 8px 0 0 .9em;
+            padding: 1em .5em;
+            max-height: 180px;
+            overflow-y: scroll;
+            box-shadow: 2px 2px 10px rgba(0,0,0,.5);
+        }
+
+        .\5f nav section ul::-webkit-scrollbar {
+            background: transparent;
+            width: 4px;
+            opacity: 0;
+            transition: all .2s;
+        }
+
+        .\5f nav section ul:hover::-webkit-scrollbar { opacity: 1 }
+
+        .\5f nav section ul::-webkit-scrollbar-thumb { background: grey }
+
+        .\5f nav section ul li a {
+            font: 600 11pt 'Roboto Mono', sans-serif;
+            color: #404858;
+            text-decoration: none;
+        }
+
+        .\5f nav section h1 {
+            color: #fff;
+            font-weight: 600;
+            font: 600 15pt 'Roboto Mono', sans-serif;
+            letter-spacing: .6px;
+            padding: .3em 0 .3em .8em;
+            background: #0e0e0e;
+        }
+
+        .\5f nav section h1, .\5f nav section ul { 
+            transition: all .5s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .\5f nav section:hover h1, .\5f nav section:hover ul { opacity: 1; visibility: visible; }
+
+        .\5f nav section ul li a::before {
+            content: '– ';
+            display: none;
+        }
+
+        .\5f nav section ul li a:hover { color: #078dab }
+        .\5f nav section ul li a:hover::before { display: unset; }
+
+        ul li { padding: .4em }
+
+        .icon {
+            color: #fff;
+            font-size: 22pt;
+            position: absolute;
+            bottom: 0;
+            margin: 0 0 .5em .5em;
+            cursor: default;
+        }
+
+        .phrase {
+            color: #464248;
+            font: 600 17pt 'Roboto', sans-serif;
+        }
+
+        ._search- {
+            left:   0;
+            right:  0;
+            margin: auto;
+            top: -110%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 500px;
+            height: 10px;
+            background: rgba(74, 74, 74, 0.8);
+            padding: 1.3em;
+            border: 1px solid var(--accent);
+            box-shadow: 0 3px 10px rgba(0,0,0,.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all .5s ease-in-out;
+            color: #fff;
+            font: 500 13px 'Roboto',sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" class="_search-" spellcheck="false" placeholder="search" />
+    <div class="_nav">
+        <section>
+            <h1>General</h1>
+            <ul>
+                <li><a href="https://youtube.com/" target="_blank">youtube</a></li>
+                <li><a href="https://www.messenger.com/" target="_blank">messenger</a></li>
+                <li><a href="https://4chan.org/" target="_blank">4chan</a></li>
+                <li><a href="https://www.github.com/" target="_blank">github</a></li>
+                <li><a href="https://drive.google.com/" target="_blank">drive</a></li>
+            </ul>
+            <i class="material-icons icon">favorite</i>
+        </section>
+        <section>
+            <h1>Social</h1>
+            <ul>
+                <li><a href="https://www.xat.com/" target="_blank">xat</a></li>
+                <li><a href="https://vk.com/" target="_blank">vk</a></li>
+                <li><a href="https://tumblr.com/" target="_blank">tumblr</a></li>
+                <li><a href="https://fb.com/" target="_blank">facebook</a></li>
+            </ul>
+            <i class="material-icons icon">people</i>
+        </section>
+        <section>
+            <h1>Favorites</h1>
+            <ul>
+                <li><a href="https://nyaa.pantsu.cat/" target="_blank">nyaa</a></li>
+                <li><a href="https://314n.org/" target="_blank">314n</a></li>
+                <li><a href="https://gelbooru.com/" target="_blank">gelbooru</a></li>
+                <li><a href="https://haskell-lang.org/documentation" target="_blank">haskell</a></li>
+                <li><a href="https://ruby-doc.org/core-2.4.1/" target="_blank">ruby</a></li>
+            </ul>
+            <i class="material-icons icon">import_contacts</i>
+        </section>
+        <section>
+            <h1>Technology</h1>
+            <ul>
+                <li><a href="https://boards.4chan.org/g/" target="_blank">/g/</a></li>
+                <li><a href="https://www.lainchan.org/lambda/" target="_blank">/λ/</a></li>
+                <li><a href="https://boards.420chan.org/prog/" target="_blank">/prog/</a></li>
+                <li><a href="https://sushigirl.us/silicon/index.html" target="_blank">/silicon/</a></li>
+                <li><a href="https://www.wired.co.uk/" target="_blank">wired</a></li>
+            </ul>
+            <i class="material-icons icon">code</i>
+        </section>
+    </div>
+
+    <script>
+    var search = document.querySelector("._search-");
+
+    document.onkeypress = (e) => {
+        if (e.key == 's')
+            search.setAttribute("style", "top: 10%; opacity: 1; visibility: visible;"); search.focus(); search.scrollIntoView();
+        search.addEventListener("keyup", (e) => { if (e.key == "Enter") window.location = "https://google.com/search?q=" + e.target.value; });
+    };
+</script>
+</body>
+</html>
