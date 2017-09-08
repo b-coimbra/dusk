@@ -20,7 +20,7 @@
 
         ul { list-style: none }
 
-        body, html { background: #0e0e0e }
+        body, html { background: #0e0e0e url("img/bg.png") repeat }
 
         :root {
             --accent: #ffa6e8;
@@ -73,6 +73,7 @@
             max-height: 180px;
             overflow-y: scroll;
             box-shadow: 2px 2px 10px rgba(0,0,0,.5);
+            white-space: nowrap;
         }
 
         .\5f nav section ul::-webkit-scrollbar {
@@ -93,6 +94,7 @@
         }
 
         .\5f nav section h1 {
+            cursor: default;
             color: #fff;
             font-weight: 600;
             font: 600 15pt 'Roboto Mono', sans-serif;
@@ -141,6 +143,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            outline: none;
             width: 500px;
             height: 10px;
             background: rgba(74, 74, 74, 0.8);
@@ -153,6 +156,8 @@
             color: #fff;
             font: 500 13px 'Roboto',sans-serif;
         }
+
+        ._search-:focus { --accent: #44ff8f }
     </style>
 </head>
 <body>
@@ -162,9 +167,9 @@
             <h1>General</h1>
             <ul>
                 <li><a href="https://youtube.com/" target="_blank">youtube</a></li>
-                <li><a href="https://www.messenger.com/" target="_blank">messenger</a></li>
+                <li><a href="https://messenger.com/" target="_blank">messenger</a></li>
                 <li><a href="https://4chan.org/" target="_blank">4chan</a></li>
-                <li><a href="https://www.github.com/" target="_blank">github</a></li>
+                <li><a href="https://github.com/" target="_blank">github</a></li>
                 <li><a href="https://drive.google.com/" target="_blank">drive</a></li>
             </ul>
             <i class="material-icons icon">favorite</i>
@@ -172,7 +177,7 @@
         <section>
             <h1>Social</h1>
             <ul>
-                <li><a href="https://www.xat.com/" target="_blank">xat</a></li>
+                <li><a href="https://xat.com/" target="_blank">xat</a></li>
                 <li><a href="https://vk.com/" target="_blank">vk</a></li>
                 <li><a href="https://tumblr.com/" target="_blank">tumblr</a></li>
                 <li><a href="https://fb.com/" target="_blank">facebook</a></li>
@@ -194,10 +199,10 @@
             <h1>Technology</h1>
             <ul>
                 <li><a href="https://boards.4chan.org/g/" target="_blank">/g/</a></li>
-                <li><a href="https://www.lainchan.org/lambda/" target="_blank">/λ/</a></li>
+                <li><a href="https://lainchan.org/lambda/" target="_blank">/λ/</a></li>
                 <li><a href="https://boards.420chan.org/prog/" target="_blank">/prog/</a></li>
                 <li><a href="https://sushigirl.us/silicon/index.html" target="_blank">/silicon/</a></li>
-                <li><a href="https://www.wired.co.uk/" target="_blank">wired</a></li>
+                <li><a href="https://wired.co.uk/" target="_blank">wired</a></li>
             </ul>
             <i class="material-icons icon">code</i>
         </section>
