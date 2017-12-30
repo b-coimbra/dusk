@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html slang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -15,12 +16,15 @@
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
             -webkit-user-select: none;
-                    user-select: none;
+            user-select: none;
         }
 
         ul { list-style: none }
 
-        body, html { background: #0e0e0e url("img/bg.png") repeat }
+        body, html {
+            height: 100vh;
+            background: linear-gradient(transparent, rgba(255, 165, 230, .15) 200%), url(res/img/bg.png) repeat, #e0e0e0;
+        }
 
         :root {
             --accent: #ffa6e8;
@@ -55,10 +59,17 @@
             filter: grayscale(1) /*brightness(120%) contrast(120%)*/;
         }
 
-        .\5f nav section:nth-child(1) { background: url("img/section-1.gif") center left / cover }
-        .\5f nav section:nth-child(2) { background: url("img/section-2.gif") center left / cover}
-        .\5f nav section:nth-child(3) { background: url("img/section-3.gif") center right / cover}
-        .\5f nav section:nth-child(4) { background: url("img/section-4.gif") center right / cover}
+        .\5f nav {
+            --img: url("res/img/section-1.gif");
+            --pos: left;
+        }
+
+        .\5f nav section { background: var(--img) center var(--pos) / cover }
+        
+        /* just in case someone disables inline javascript */
+        .\5f nav section:nth-child(2) { --img: url("res/img/section-2.gif") }
+        .\5f nav section:nth-child(3) { --img: url("res/img/section-3.gif") }
+        .\5f nav section:nth-child(4) { --img: url("res/img/section-4.gif") }
 
         .\5f nav section:hover {
             width: 120%;
@@ -118,6 +129,16 @@
 
         .\5f nav section ul li a:hover { color: #078dab }
         .\5f nav section ul li a:hover::before { display: unset; }
+
+        .\5f nav::after {
+            content: 'あえいおうかけきこく';
+            position: absolute;
+            bottom: -2em;
+            color: rgb(60, 50, 60);
+            left: 0;
+            font: 600 22pt 'Roboto', sans-serif;
+            letter-spacing: 5px;
+        }
 
         ul li { padding: .4em }
 
@@ -181,6 +202,7 @@
                 <li><a href="https://vk.com/" target="_blank">vk</a></li>
                 <li><a href="https://tumblr.com/" target="_blank">tumblr</a></li>
                 <li><a href="https://fb.com/" target="_blank">facebook</a></li>
+                <li><a href="https://discord.com/" target="_blank">discord</a></li>
             </ul>
             <i class="material-icons icon">people</i>
         </section>
@@ -200,22 +222,35 @@
             <ul>
                 <li><a href="https://boards.4chan.org/g/" target="_blank">/g/</a></li>
                 <li><a href="https://lainchan.org/lambda/" target="_blank">/λ/</a></li>
+                <li><a href="https://8ch.net/tech/" target="_blank">/tech/</a></li>
                 <li><a href="https://boards.420chan.org/prog/" target="_blank">/prog/</a></li>
                 <li><a href="https://sushigirl.us/silicon/index.html" target="_blank">/silicon/</a></li>
-                <li><a href="https://wired.co.uk/" target="_blank">wired</a></li>
+                <li><a href="https://news.ycombinator.com/" target="_blank">Y combinator</a></li>
             </ul>
             <i class="material-icons icon">code</i>
         </section>
     </div>
-
     <script>
-    var search = document.querySelector("._search-");
+        const $ = (e) => document.querySelector(e);
 
-    document.onkeypress = (e) => {
-        if (e.key == 's')
-            search.setAttribute("style", "top: 10%; opacity: 1; visibility: visible;"); search.focus(); search.scrollIntoView();
-        search.addEventListener("keyup", (e) => { if (e.key == "Enter") window.location = "https://google.com/search?q=" + e.target.value; });
-    };
-</script>
+        // fetch random gif
+        for (var i = 1; i < 5; i++) {
+            var section   = Math.floor(Math.random() * 4) + 1;
+            var images    = Array.from({length: 5}, (e, i) => `section-${section}-${i + 1}`);
+            var randImage = images[Math.floor(Math.random() * images.length)];
+
+            $(`.\\5f nav section:nth-child(${section})`).style.setProperty("--img", `url("res/img/${randImage}.gif")`);
+            console.log(randImage);
+        }
+
+        // google search
+        var search = $("._search-");
+
+        document.onkeypress = (e) => {
+            if (e.key == 's')
+                search.setAttribute("style", "top: 10%; opacity: 1; visibility: visible;"); search.focus(); search.scrollIntoView();
+            search.addEventListener("keyup", (e) => { if (e.key == "Enter") window.location = "https://google.com/search?q=" + e.target.value; });
+        };
+    </script>
 </body>
 </html>
