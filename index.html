@@ -48,7 +48,7 @@
             top: 0;
             bottom: 0;
             background: grey;
-            box-shadow: 0 5px 30px rgba(0,0,0,.4);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, .4);
             border-bottom: 5px solid var(--accent);
         }
 
@@ -65,8 +65,7 @@
         }
 
         .\5f nav section { background: var(--img) center var(--pos) / cover }
-        
-        /* just in case someone disables inline javascript */
+
         .\5f nav section:nth-child(2) { --img: url("res/img/section-2.gif") }
         .\5f nav section:nth-child(3) { --img: url("res/img/section-3.gif") }
         .\5f nav section:nth-child(4) { --img: url("res/img/section-4.gif") }
@@ -83,7 +82,7 @@
             padding: 1em .5em;
             max-height: 180px;
             overflow-y: scroll;
-            box-shadow: 2px 2px 10px rgba(0,0,0,.5);
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
             white-space: nowrap;
         }
 
@@ -156,33 +155,56 @@
             font: 600 17pt 'Roboto', sans-serif;
         }
 
-        ._search- {
-            left:   0;
-            right:  0;
-            margin: auto;
-            top: -110%;
+        ._search {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            outline: none;
+            left:   0;
+            right:  0;
+            top: -110%;
             width: 500px;
+            margin: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .5s ease-in-out;
+        }
+
+        .search-engines {
+            list-style: none;
+            color: #8a8a8a;
+            display: block;
+            display: flex;
+            position: absolute;
+            top: 50px;
+            left: 0;
+        }
+
+        .search-engines, ._search input[type="text"] {
+            font: 500 13px 'Roboto', sans-serif;
+        }
+
+        ._search input[type="text"] {
+            outline: none;
+            width: 100%;
             height: 10px;
             background: rgba(74, 74, 74, 0.8);
             padding: 1.3em;
             border: 1px solid var(--accent);
-            box-shadow: 0 3px 10px rgba(0,0,0,.3);
-            opacity: 0;
-            visibility: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
             transition: all .5s ease-in-out;
             color: #fff;
-            font: 500 13px 'Roboto',sans-serif;
         }
 
-        ._search-:focus { --accent: #44ff8f }
+        ._search input[type="text"]:focus { --accent: #44ff8f }
     </style>
 </head>
 <body>
-    <input type="text" class="_search-" spellcheck="false" placeholder="search" />
+    <div class="_search">
+        <input type="text" spellcheck="false" placeholder="search" />
+        <ul class="search-engines">
+        </ul>
+    </div>
     <div class="_nav">
         <section>
             <h1>General</h1>
@@ -240,16 +262,35 @@
             var randImage = images[Math.floor(Math.random() * images.length)];
 
             $(`.\\5f nav section:nth-child(${section})`).style.setProperty("--img", `url("res/img/${randImage}.gif")`);
-            console.log(randImage);
         }
 
-        // google search
-        var search = $("._search-");
+        // search mechanism
+        var search  = $('._search');
+        var input   = $('._search input[type="text"]');
+        var engines = {
+            '!g': ['https://google.com/search?q=', 'Google'],
+            '!i': ['https://ixquick.com/do/search?q=', 'Ixquick'],
+            '!d': ['https://duckduckgo.com/html?q=', 'DuckDuckGo'],
+            '!y': ['https://youtube.com/results?search_query=', 'Youtube'],
+            '!w': ['https://en.wikipedia.org/w/index.php?search=', 'Wikipedia']
+        };
+
+        for (var key in engines)
+            $('.search-engines').innerHTML += `<li><p title="${engines[key][1]}">${key}</p></li>`;
 
         document.onkeypress = (e) => {
             if (e.key == 's')
-                search.setAttribute("style", "top: 10%; opacity: 1; visibility: visible;"); search.focus(); search.scrollIntoView();
-            search.addEventListener("keyup", (e) => { if (e.key == "Enter") window.location = "https://google.com/search?q=" + e.target.value; });
+                search.setAttribute("style", "top: 10%; opacity: 1; visibility: visible;");
+
+            input.focus();
+            input.scrollIntoView();
+
+            search.addEventListener("keyup", (e) => {
+                var args = e.target.value.split(' ');
+
+                if (e.key == "Enter")
+                    window.location = engines[args[0]][0] + args.slice(1).toString().replace(/\,/, ' ');
+            });
         };
     </script>
 </body>
