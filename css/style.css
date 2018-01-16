@@ -1,0 +1,205 @@
+@charset "UTF-8";
+
+:root {
+    --accent: #ffa6e8;
+    --banner: 'あえいおうかけきこく';
+}
+
+* {
+    margin:  0;
+    padding: 0;
+    border:  0;
+    padding: 0;
+    outline: 0;
+    list-style: none;
+    text-decoration: none;
+    text-rendering: optimizeLegibility;
+    -webkit-user-select: none;
+      -webkit-user-drag: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+         -o-user-select: none;
+            user-select: none;
+    -webkit-webkit-font-smoothing: subpixel-antialised;
+       -moz-webkit-font-smoothing: subpixel-antialised;
+        -ms-webkit-font-smoothing: subpixel-antialised;
+         -o-webkit-font-smoothing: subpixel-antialised;
+}
+
+::selection { background: #000 }
+
+[class^='\5f'], .\5f nav::after, .icon, .search-engines {
+    position: absolute;
+}
+
+body, html {
+    height: 100vh;
+    background: linear-gradient(transparent, rgba(255, 165, 230, .15) 200%),
+                url("../img/bg.png") repeat, #e0e0e0;
+}
+
+.\5f nav {
+    height: 320px;
+    width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: grey;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .4);
+    border-bottom: 5px solid var(--accent);
+}
+
+.\5f nav section {
+    width: 50%;
+    height: 100%;
+    transition: all .5s ease-in-out;
+    filter: grayscale(1) /*brightness(120%) contrast(120%)*/;
+}
+
+.\5f nav {
+    --img: url("img/section-1.gif");
+    --pos: left;
+}
+
+.\5f nav section { background: var(--img) center var(--pos) / cover }
+
+.\5f nav section:nth-child(2) { --img: url("img/section-2.gif") }
+.\5f nav section:nth-child(3) { --img: url("img/section-3.gif") }
+.\5f nav section:nth-child(4) { --img: url("img/section-4.gif") }
+
+.\5f nav section:hover {
+    width: 120%;
+    filter: grayscale(0);
+}
+
+.\5f nav section ul {
+    max-width: 40%;
+    background: #fff;
+    margin: 8px 0 0 .9em;
+    padding: 1em .5em;
+    max-height: 180px;
+    overflow-y: scroll;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
+    white-space: nowrap;
+}
+
+.\5f nav section ul::-webkit-scrollbar {
+    background: transparent;
+    width: 4px;
+    opacity: 0;
+    transition: all .2s;
+}
+
+.\5f nav section ul:hover::-webkit-scrollbar { opacity: 1 }
+
+.\5f nav section ul::-webkit-scrollbar-thumb { background: grey }
+
+.\5f nav section ul li a {
+    font: 600 11pt 'Roboto Mono', sans-serif;
+    color: #404858;
+    text-decoration: none;
+}
+
+.\5f nav section h1 {
+    cursor: default;
+    color: #fff;
+    font-weight: 600;
+    font: 600 15pt 'Roboto Mono', sans-serif;
+    letter-spacing: .6px;
+    padding: .3em 0 .3em .8em;
+    background: #0e0e0e;
+}
+
+.\5f nav section h1, .\5f nav section ul { 
+    transition: all .5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.\5f nav section:hover h1, .\5f nav section:hover ul { opacity: 1; visibility: visible; }
+
+.\5f nav section ul li a::before {
+    content: '– ';
+    display: none;
+}
+
+.\5f nav section ul li a:hover { color: #078dab }
+.\5f nav section ul li a:hover::before { display: unset; }
+
+.\5f nav::after {
+    content: var(--banner);
+    bottom: -2em;
+    color: rgb(60, 50, 60);
+    left: 0;
+    font: 600 22pt 'Roboto', sans-serif;
+    letter-spacing: 5px;
+}
+
+.search-engines li p { cursor: default }
+
+ul li { padding: .4em; }
+
+li.active {
+    color: #fff;
+    font-weight: bold;
+}
+
+.icon {
+    color: #fff;
+    font-size: 22pt;
+    bottom: 0;
+    margin: 0 0 .5em .5em;
+    cursor: default;
+}
+
+.phrase {
+    color: #464248;
+    font: 600 17pt 'Roboto', sans-serif;
+}
+
+._search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left:   0;
+    right:  0;
+    top: -110%;
+    width: 500px;
+    margin: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s ease-in-out;
+}
+
+.search-engines {
+    list-style: none;
+    color: #8a8a8a;
+    display: block;
+    display: flex;
+    top: 50px;
+    left: 0;
+}
+
+.search-engines, ._search input[type="text"] {
+    font: 500 13px 'Roboto', sans-serif;
+}
+
+._search input[type="text"] {
+    outline: none;
+    width: 100%;
+    height: 10px;
+    background: rgba(74, 74, 74, 0.8);
+    padding: 1.3em;
+    border: 1px solid var(--accent);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
+    transition: all .5s ease-in-out;
+    color: #fff;
+}
+
+._search input[type="text"]:focus { --accent: #44ff8f }
