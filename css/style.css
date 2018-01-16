@@ -26,6 +26,25 @@
          -o-webkit-font-smoothing: subpixel-antialised;
 }
 
+@-moz-document url-prefix() {
+    .\5f nav section ul li a, .\5f nav section h1 {
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 500 !important;
+    }
+
+    ul {
+        overflow: hidden !important;
+    }
+
+    .\5f nav {
+        --img: url("../img/section-1.gif") !important;
+    }
+
+    .\5f nav section:nth-child(2) { --img: url("../img/section-2.gif") !important }
+    .\5f nav section:nth-child(3) { --img: url("../img/section-3.gif") !important }
+    .\5f nav section:nth-child(4) { --img: url("../img/section-4.gif") !important }
+}
+
 ::selection { background: #000 }
 
 [class^='\5f'], .\5f nav::after, .icon, .search-engines {
@@ -144,7 +163,7 @@ body, html {
 
 ul li { padding: .4em; }
 
-li.active {
+.search-engines li.active {
     color: #fff;
     font-weight: bold;
 }
@@ -162,7 +181,7 @@ li.active {
     font: 600 17pt 'Roboto', sans-serif;
 }
 
-._search {
+.\5f search {
     position: relative;
     display: flex;
     align-items: center;
@@ -186,11 +205,11 @@ li.active {
     left: 0;
 }
 
-.search-engines, ._search input[type="text"] {
+.search-engines, .\5f search input[type="text"] {
     font: 500 13px 'Roboto', sans-serif;
 }
 
-._search input[type="text"] {
+.\5f search input[type="text"] {
     outline: none;
     width: 100%;
     height: 10px;
@@ -202,4 +221,35 @@ li.active {
     color: #fff;
 }
 
-._search input[type="text"]:focus { --accent: #44ff8f }
+.\5f search input[type="text"]:focus { --accent: #44ff8f }
+
+.clock {
+    position: relative;
+    display: block;
+    width: 60px;
+    color: #fff;
+    text-align: center;
+}
+
+.clock p {
+    padding: .5em 0;
+    box-shadow: 0 0 0 1px #656565;
+    background: rgba(72, 72, 72, 0.58);
+    font: 600 15px 'Roboto', sans-serif;
+}
+
+.clock .day {
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.clock .mins {
+    font-weight: 100;
+    margin: 1em 0 0 0;
+    color: #b7b7b7;
+}
+
+.clock .hour {
+    font-weight: 600;
+    color: #fff;
+}

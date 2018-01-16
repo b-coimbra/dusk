@@ -8,8 +8,9 @@ const $ = (e) => document.querySelector(e);
         var section   = Math.floor(Math.random() * 4) + 1;
         var images    = Array.from({length: 5}, (e, i) => `section-${section}-${i + 1}`);
         var randImage = images[Math.floor(Math.random() * images.length)];
+        var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
-        $(`.\\5f nav section:nth-child(${section})`).style.setProperty("--img", `url("img/${randImage}.gif")`);
+        $(`.\\5f nav section:nth-child(${section})`).style.setProperty("--img", `url("${isFirefox ? '../' : './'}img/${randImage}.gif")`);
     }
 
     // search mechanism
@@ -36,6 +37,8 @@ const $ = (e) => document.querySelector(e);
         search.addEventListener("keyup", (e) => {
             var args   = e.target.value.split(' ');
             var prefix = args[0];
+            var engine = engines['!g'][0]; // default engine
+            var str    = 0;
 
             document.querySelectorAll('.search-engines li p').forEach((eng) => {
                 var current = eng.parentNode;
@@ -46,14 +49,24 @@ const $ = (e) => document.querySelector(e);
             });
 
             if (e.key == "Enter") {
-                (prefix.indexOf('!') != 0)
-                    // default engine
-                    ? (engine = engines['!g'][0],   str = 0)
-                    : (engine = engines[prefix][0], str = 3);
+                if (prefix.indexOf('!') == 0)
+                    (engine = engines[prefix][0], str = 3);
 
-                window.location = engine + args.join(' ').substring(str);
+                window.location = engine + args.join(' ').substr(str);
             }
         });
     };
+
+    // clock
+    var date  = new Date();
+    var hours = date.getHours();
+    var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var days  = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    let setTime = (div, time) => { div.innerHTML += time };
+
+    setTime($('.day'),  days[date.getDay()].substr(0, 3));
+    setTime($('.hour'), hours + '\'');
+    setTime($('.mins'), date.getMinutes());
 })();
 
