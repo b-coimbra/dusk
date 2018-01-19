@@ -1,4 +1,4 @@
-# c0imbra.github.io
+# startpage
 Just a generic startpage.
 
 [Preview](https://0-l.github.io/startpage/)
