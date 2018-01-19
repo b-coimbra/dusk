@@ -7,7 +7,6 @@
 
 * {
     margin:  0;
-    padding: 0;
     border:  0;
     padding: 0;
     outline: 0;
@@ -31,6 +30,8 @@
         font-family: 'Roboto', sans-serif !important;
         font-weight: 500 !important;
     }
+
+    .\5f nav section h1 { font-weight: bold !important }
 
     ul {
         overflow: hidden !important;
@@ -159,7 +160,11 @@ body, html {
     letter-spacing: 5px;
 }
 
-.search-engines li p { cursor: default }
+.search-engines li p {
+    cursor: default;
+    transition: all .2s;
+    font-size: 12px;
+}
 
 ul li { padding: .4em; }
 
@@ -212,9 +217,9 @@ ul li { padding: .4em; }
 .\5f search input[type="text"] {
     outline: none;
     width: 100%;
-    height: 10px;
+    height: 15px;
     background: rgba(74, 74, 74, 0.8);
-    padding: 1.3em;
+    padding: 1em;
     border: 1px solid var(--accent);
     box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
     transition: all .5s ease-in-out;
