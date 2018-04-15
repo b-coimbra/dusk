@@ -1,5 +1,5 @@
 # dusk
-Design shamelessly stolen from someone on /wg/.
+Design shamelessly stolen from [twentytwoo](https://github.com/twentytwoo/startpages/tree/master/Sapphire)
 
 [Live Preview](https://0-l.github.io/dusk/)
 
